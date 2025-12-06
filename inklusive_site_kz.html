@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="kk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Бәріміз бірдейміз — Инклюзивті балаларға арналған сайт</title>
+  <meta name="description" content="Инклюзивті балаларға және ата-аналарға арналған қазақша оқу-дамыту ресурстары" />
+  <style>
+    :root{
+      --bg:#ffffff; --fg:#0b2545; --accent:#0a84ff; --muted:#555;
+      --card:#f6f9ff; --radius:14px;
+    }
+    [data-theme="dark"]{ --bg:#0b1220; --fg:#e6eef8; --accent:#3aa0ff; --card:#071226; --muted:#9fb3d9 }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Helvetica Neue', Arial; background:var(--bg); color:var(--fg);}
+    .app{max-width:1100px;margin:24px auto;padding:20px}
+    header{display:flex;gap:16px;align-items:center;justify-content:space-between}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#7ad2ff);display:flex;align-items:center;justify-content:center;font-weight:700;color:white}
+    h1{font-size:1.6rem;margin:0}
+    p.lead{margin:6px 0 0;color:var(--muted)}
+    nav{display:flex;gap:8px}
+    .btn{background:var(--accent);color:white;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:600}
+    .btn.ghost{background:transparent;color:var(--fg);border:1px solid rgba(0,0,0,0.06)}
+    main{display:grid;grid-template-columns:1fr 360px;gap:20px;margin-top:18px}
+    @media(max-width:920px){main{grid-template-columns:1fr} .sidebar{order:2}}
+    .card{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 6px 18px rgba(10,20,40,0.04)}
+    .hero{display:flex;gap:16px;align-items:center}
+    .hero .media{flex:1}
+    .hero .cta{width:260px}
+    .bigplay{display:flex;align-items:center;gap:10px}
+    .bigplay button{font-size:1.1rem;padding:12px 16px}
+    .section{margin-top:14px}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    @media(max-width:640px){.grid{grid-template-columns:1fr}}
+    .lesson{display:flex;gap:10px;align-items:center;padding:12px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent)}
+    .lesson .icon{width:56px;height:56px;border-radius:8px;background:rgba(0,0,0,0.04);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+    .muted{color:var(--muted);font-size:0.95rem}
+    .sidebar .search{display:flex;gap:8px}
+    input[type="search"],textarea,input[type="text"]{padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);width:100%;background:transparent;color:inherit}
+    footer{margin:28px 0 60px;color:var(--muted);font-size:0.9rem}
+    /* Accessibility helpers */
+    .controls{display:flex;gap:8px;flex-wrap:wrap}
+    .sr-only{position:absolute;left:-10000px}
+    .transcript{max-height:160px;overflow:auto;padding:8px;background:rgba(0,0,0,0.03);border-radius:8px}
+    .big{font-size:1.25rem;font-weight:700}
+    .kbd{background:rgba(0,0,0,0.06);padding:4px 8px;border-radius:6px;font-family:monospace}
+  </style>
+</head>
+<body>
+  <div class="app" id="app">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden>Б</div>
+        <div>
+          <h1>Бәріміз бірдейміз</h1>
+          <p class="lead">Инклюзивті балаларға арналған қазақша оқу-дамыту ресурстары</p>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center">
+        <div class="controls">
+          <button class="btn" id="ttsBtn" title="Дыбыстап оқу (бар бетті оқу)">🔊 Дыбыстап оқу</button>
+          <button class="btn ghost" id="contrastBtn" title="Жоғары контраст/күңгірт">🌓 Көрініс</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <div class="card hero" aria-labelledby="hero-title">
+          <div class="media">
+            <h2 id="hero-title" class="big">Видео-бөлім: Күні бойы ойнап, үйренеміз</h2>
+            <p class="muted">Төмендегі бейне сіз жіберген үлгіге ұқсас — қазақша, қарапайым және балаларға қолайлы. Видеоға субтитр қосып, мәтін түрін ашуға болады.</p>
+
+            <!-- Embedded YouTube video (your link) -->
+            <div style="margin-top:12px">
+              <div style="position:relative;padding-top:56.25%"> 
+                <iframe id="mainVideo" src="https://www.youtube.com/embed/Bx2v1gZJB3c?rel=0&cc_load_policy=1" title="YouTube video player" style="position:absolute;left:0;top:0;width:100%;height:100%;border:0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+              </div>
+            </div>
+
+            <div style="margin-top:10px;display:flex;gap:8px;align-items:center">
+              <button class="btn" id="playLesson">Оқуды бастау ▶</button>
+              <button class="btn ghost" id="showTrans">Транскрипт көрсету</button>
+              <div style="margin-left:auto" class="muted">KZ • 4–10 жаста</div>
+            </div>
+
+            <div id="transcript" class="transcript" style="display:none;margin-top:10px">Әзірге транскрипт жоқ — сайт әкімшісі оны қоса алады.</div>
+
+          </div>
+          <aside class="cta" style="min-width:220px">
+            <div class="card">
+              <h3 style="margin:0">Жылдам бөлімдер</h3>
+              <p class="muted">Таңдаңыз және бастау үшін батырманы басыңыз.</p>
+              <div style="margin-top:8px" class="grid">
+                <div class="lesson" tabindex="0">
+                  <div class="icon">🔤</div>
+                  <div>
+                    <div><strong>Әріптер</strong></div>
+                    <div class="muted">Ойын арқылы үйрену</div>
+                  </div>
+                </div>
+                <div class="lesson" tabindex="0">
+                  <div class="icon">🔢</div>
+                  <div>
+                    <div><strong>Санау</strong></div>
+                    <div class="muted">Санап, салыстыру</div>
+                  </div>
+                </div>
+                <div class="lesson" tabindex="0">
+                  <div class="icon">🎨</div>
+                  <div>
+                    <div><strong>Түстер</strong></div>
+                    <div class="muted">Сурет және форма</div>
+                  </div>
+                </div>
+                <div class="lesson" tabindex="0">
+                  <div class="icon">🎵</div>
+                  <div>
+                    <div><strong>Музыка</strong></div>
+                    <div class="muted">Әуен арқылы дамыту</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" style="margin-top:12px">
+              <h4 style="margin:0">Байланыс</h4>
+              <p class="muted">Сұрақтар және тілектер</p>
+              <form id="contactForm" onsubmit="return false" aria-label="Байланыс формасы">
+                <input type="text" id="name" placeholder="Аты-жөніңіз" required />
+                <input type="text" id="phone" placeholder="Телефон немесе Telegram" style="margin-top:8px" />
+                <textarea id="message" rows="3" placeholder="Хабарлама" style="margin-top:8px"></textarea>
+                <button class="btn" style="margin-top:8px" id="sendBtn">Жіберу</button>
+                <div id="contactResult" class="muted" style="margin-top:8px"></div>
+              </form>
+            </div>
+          </aside>
+        </div>
+
+        <div class="section card" style="margin-top:12px">
+          <h3>Ата-аналарға пайдалы</h3>
+          <p class="muted">Қысқа нұсқаулықтар және жаттығу идеялары.</p>
+          <ul>
+            <li><strong>Үйде әрекет:</strong> күн сайын 10 минут - әріптерді таныстыру (ойын арқылы).</li>
+            <li><strong>Қол қозғалысы:</strong> пластилинмен ойнау - моториканы дамытады.</li>
+            <li><strong>Көрнекілік:</strong> суреттерді және қарапайым белгілерді қолданыңыз.</li>
+          </ul>
+        </div>
+
+        <!-- ADDITIONAL SECTIONS START -->
+        <div class="section grid">
+          <div class="card">
+            <h4>🧠 Даму ойындары</h4>
+            <ul>
+              <li>Зейінді дамыту ойындары</li>
+              <li>Салыстыру және есте сақтау</li>
+              <li>Қарапайым логикалық тапсырмалар</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>🗣 Сөйлеуді дамыту</h4>
+            <ul>
+              <li>Дыбыстарды қайталау</li>
+              <li>Қысқа сөздермен жұмыс</li>
+              <li>Сурет арқылы әңгімелеу</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>👁 Көру қабілетіне қолдау</h4>
+            <ul>
+              <li>Үлкен қаріп режимі</li>
+              <li>Контрастты түстер</li>
+              <li>Дыбыспен басқару</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>👂 Есту қабілетіне қолдау — YouTube тәрізді</h4>
+            <p class="muted">Видео және субтитрларды көрсету YouTube стилінде — батырма арқылы негізгі бейнені ауыстыруға болады.</p>
+            <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
+              <!-- Thumbnail that loads the video into main player -->
+              <button class="btn ghost" id="ytThumbBtn" style="display:flex;gap:8px;align-items:center;padding:6px">
+                <img src="https://img.youtube.com/vi/Bx2v1gZJB3c/hqdefault.jpg" alt="Видео миниатюрасы" style="width:120px;height:68px;object-fit:cover;border-radius:6px"/>
+                <div style="text-align:left">
+                  <div style="font-weight:700">Балаларға арналған сабақ — бейне</div>
+                  <div class="muted">3:20 • Қазақша • Субтитр бар</div>
+                </div>
+              </button>
+            </div>
+            <div style="margin-top:10px;display:flex;gap:8px;align-items:center">
+              <button class="btn" id="openYt">Ойнату (YouTube)</button>
+              <button class="btn ghost" id="toggleCC">Субтитр: ON</button>
+              <a class="btn ghost" id="subscribeBtn" href="https://youtu.be/Bx2v1gZJB3c" target="_blank" rel="noopener">YouTube каналға кіру</a>
+            </div>
+            <div class="muted" style="margin-top:8px">Ескерту: нақты ойнатуды басқару үшін YouTube IFrame API-ін қосуға болады (қосымша орнату қажет).</div>
+          </div>
+        </div>
+        <!-- ADDITIONAL SECTIONS END -->
+
+        <div class="section grid">
+          <div class="card">
+            <h4>Қосымша құралдар</h4>
+            <p class="muted">Постерлер, PDF жаттығулар және субтитрлер.</p>
+            <button class="btn ghost" id="downloadPdf">PDF жүктеу (үлгі)</button>
+          </div>
+          <div class="card">
+            <h4>Қате жоқ, жай үйрену</h4>
+            <p class="muted">Психолог кеңестері мен әрекеттері қысқаша.</p>
+          </div>
+        </div>
+
+      </section>
+
+      <aside class="sidebar">
+        <div class="card">
+          <h4>Іздеу сабақтары</h4>
+          <div class="search"><input type="search" id="q" placeholder="Мысалы: сан, әріп" /></div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h4>Жиі сұрақтар</h4>
+          <details>
+            <summary>Бұл сайт кімге арналған?</summary>
+            <p class="muted">4–12 жас аралығындағы ерекше қажеттіліктері бар балалар мен ата-аналарына.</p>
+          </details>
+          <details>
+            <summary>Қалай көмек сұрау керек?</summary>
+            <p class="muted">Байланыс формасы арқылы немесе Telegram нөмірі арқылы хабарласыңыз.</p>
+          </details>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h4>Қолдаулар</h4>
+          <p class="muted">Көрнекі, дыбыстық және субтитрлы контент.</p>
+          <p class="muted">Жақында күнтізбе мен онлайн-сабақтар қосылады.</p>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      © <span id="year"></span> Бәріміз бірдейміз — Барлық құқықтар қорғалған • Тел: +7 xxx xxx xxxx
+    </footer>
+  </div>
+
+  <script>
+    // Small accessibility & behavior script
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const ttsBtn = document.getElementById('ttsBtn');
+    const playLesson = document.getElementById('playLesson');
+    const showTrans = document.getElementById('showTrans');
+    const transcriptEl = document.getElementById('transcript');
+    const contactForm = document.getElementById('contactForm');
+    const contactResult = document.getElementById('contactResult');
+    const contrastBtn = document.getElementById('contrastBtn');
+
+    // Theme toggle
+    contrastBtn.addEventListener('click', ()=>{
+      const root = document.documentElement;
+      if(root.getAttribute('data-theme')==='dark'){
+        root.removeAttribute('data-theme');
+      } else root.setAttribute('data-theme','dark');
+    });
+
+    // Text-to-speech of main content
+    ttsBtn.addEventListener('click', ()=>{
+      const text = document.querySelector('#app').innerText.replace(/\s+/g,' ');
+      if('speechSynthesis' in window){
+        const ut = new SpeechSynthesisUtterance(text.slice(0,2000)); // limit
+        ut.lang = 'kk-KZ';
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(ut);
+      } else alert('Сіздің браузеріңізде мәтінді оқу қолжетімсіз.');
+    });
+
+    // Play button focuses the video
+    playLesson.addEventListener('click', ()=>{
+      const iframe = document.getElementById('mainVideo');
+      // attempt to start playback via postMessage
+      iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}','*');
+      iframe.scrollIntoView({behavior:'smooth'});
+    });
+
+    // Toggle transcript (site owner can paste transcript into innerHTML)
+    showTrans.addEventListener('click', ()=>{
+      if(transcriptEl.style.display==='none') transcriptEl.style.display='block'; else transcriptEl.style.display='none';
+      if(transcriptEl.style.display==='block'){ showTrans.textContent = 'Транскрипт жасыру' } else showTrans.textContent = 'Транскрипт көрсету'
+    });
+
+    // Contact form (local demonstration only)
+    contactForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if(!name){ contactResult.textContent = 'Атыңызды енгізіңіз'; return; }
+      contactResult.textContent = 'Хабарлама қабылданды — сізге жақын арада жауап береміз (демо).';
+      contactForm.reset();
+    });
+
+    // PDF download demo (creates a simple text file as demo)
+    document.getElementById('downloadPdf').addEventListener('click', ()=>{
+      const blob = new Blob(["Үлгі PDF емес — бірақ сіз осы жерде нақты PDF файлын қоса аласыз."],{type:'text/plain'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'guide.txt'; a.click(); URL.revokeObjectURL(url);
+    });
+
+    // Keyboard focus helpers for lessons
+    document.querySelectorAll('.lesson').forEach(el=>{
+      el.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') alert('Бұл бөлім әлі дайын емес — демо'); });
+      el.addEventListener('click', ()=> alert('Бұл бөлім әлі дайын емес — демо'));
+    });
+
+    // Auto-enable captions for YouTube iframe (YouTube parameter cc_load_policy=1 is set in src)
+    // Note: to control the player's API in detail you'd load YouTube IFrame API.
+
+    // Small improvement: respect prefers-reduced-motion
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      document.querySelectorAll('*').forEach(n=>{ n.style.transition = 'none' });
+    }
+
+    // Focus first interactive element for keyboard users
+    window.addEventListener('load', ()=> document.querySelector('.btn').focus());
+  </script>
+</body>
+</html>
